@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link, useLocation} from "react-router-dom"
+
 export default function Navbar() {
+  let location = useLocation();
+ 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand mx-3" to="#">
-        Navbar
+        SkyScroll
       </Link>
       <button
         className="navbar-toggler"
@@ -20,28 +23,17 @@ export default function Navbar() {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">
+          <li className="nav-item">
+            <Link className={`nav-link ${location.pathname==='/'?"active":""}`} to="/">
               Home
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/about">
+            <Link className={`nav-link ${location.pathname==='/about'?"active":""}`} to="/about">
               About
             </Link>
           </li>
         </ul>
-        {/* <form className="form-inline my-2 my-lg-0">
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form> */}
       </div>
     </nav>
   );

@@ -89,7 +89,7 @@ router.delete(
         }
 
         note = await notes.findByIdAndDelete(req.params.id);
-        res.send("Note deleted succesfully")
+        res.json(note)
         
     }catch (error) {
         console.error(error.message);

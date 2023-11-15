@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import noteContext from '../context/notes/noteContext';
 
 export default function About() {
+  const a = useContext(noteContext);
   return (
-    <div>1</div>
+    <div className='mx-2 my-1'>
+      This is about {a.name} from {a.class}
+    </div>
   )
 }
