@@ -27,8 +27,6 @@ const NoteState = (props)=>{
             body: JSON.stringify({title, description, tag}),
         });
         const json = await response.json();
-        console.log(json);
-
         setNotes(notes.concat(json));
     }
     const deleteNote = async(id)=>{
@@ -56,7 +54,16 @@ const NoteState = (props)=>{
             body: JSON.stringify({title, description, tag}),
             });
             const json = await response.json();
-            console.log(json);
+            console.log(json)
+            let newNotes = JSON.parse(JSON.stringify(notes))
+            for(let index=0;index<notes.length;index++){
+                if(newNotes[index]._id===id){
+                    newNotes[index].title = title
+                    newNotes[index].description = description
+                    newNotes[index].tag = tag
+                }
+            }
+            setNotes(newNotes);
     }
     return (
         <NoteContext.Provider value={{notes, setNotes, getNote, addNote, deleteNote, editNote}}>

@@ -6,6 +6,8 @@ node_modules
 /.pnp
 .pnp.js
 /practice
+/.env
+/skyscroll_backend/.env
 # testing
 /coverage
 
