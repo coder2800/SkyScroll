@@ -26,8 +26,8 @@ const Login = () => {
   }
   return (
     <div className="my-3">
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+      <form onSubmit={handleSubmit} style={{"display": "flex", "flexDirection":"column"}}>
+        <div className="mb-3 my-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
@@ -44,7 +44,7 @@ const Login = () => {
             We'll never share your email with anyone else.
           </div>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 my-3">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -57,7 +57,7 @@ const Login = () => {
             value={user.password}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary my-3">
           Login
         </button>
       </form>
