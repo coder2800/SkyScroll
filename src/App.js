@@ -7,10 +7,12 @@ import About from "./components/About";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import NoteState from "./context/notes/NoteState";
+import UserState from "./context/user/UserState";
 
 function App() {
   return (
     <>
+    <UserState>
     <NoteState>
       <Router>
         <Navbar />
@@ -24,6 +26,7 @@ function App() {
         </div>
       </Router>
       </NoteState>
+      </UserState>
     </>
   );
 }
