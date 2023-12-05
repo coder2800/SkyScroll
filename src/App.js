@@ -10,6 +10,13 @@ import NoteState from "./context/notes/NoteState";
 import UserState from "./context/user/UserState";
 
 function App() {
+
+  const showAlert = (msg, type)=>{
+    <div className={`alert alert-${type}`} role="alert">
+      {msg}
+    </div>
+  }
+
   return (
     <>
     <UserState>
@@ -18,10 +25,10 @@ function App() {
         <Navbar />
         <div className = "container">
         <Routes>
-          <Route exact path="/" element={<Home />}></Route>
-          <Route exact path="/about" element={<About />}></Route>
-          <Route exact path="/login" element={<Login />}></Route>
-          <Route exact path="/signUp" element={<SignUp />}></Route>
+          <Route exact path="/" element={<Home showAlert = {showAlert}/>}></Route>
+          <Route exact path="/about" element={<About showAlert = {showAlert}/>}></Route>
+          <Route exact path="/login" element={<Login showAlert = {showAlert}/>}></Route>
+          <Route exact path="/signUp" element={<SignUp showAlert = {showAlert}/>}></Route>
         </Routes>
         </div>
       </Router>
