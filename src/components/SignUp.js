@@ -34,6 +34,7 @@ const SignUp = (props) => {
   }
   return (
     <div style={{marginTop: "50px"}}>
+      <h2>Create an account on SkyScroll - </h2>
       <form onSubmit={handleSubmit} style={{"display": "flex", "flexDirection": "column"}}>
         <div className="form-group my-3">
           <label htmlFor="name">Name</label>

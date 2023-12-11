@@ -27,6 +27,7 @@ const Login = (props) => {
   }
   return (
     <div style={{marginTop: "50px"}}>
+      <h2>Please login to continue to your SkyScroll account - </h2>
       <form onSubmit={handleSubmit} style={{"display": "flex", "flexDirection":"column"}}>
         <div className="mb-3 my-3">
           <label htmlFor="exampleInputEmail1" className="form-label">

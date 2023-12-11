@@ -10,8 +10,8 @@ const Noteitem = (props) => {
       showAlert("success", "Note deleted successfully.")
     }
   return (
-    <div className='col-md-3'>
-        <div className="card my-3">
+    <div className='col-md-3' style={{marginTop: "0px"}}>
+        <div className="card">
             <div className="card-body my-3">
                 <h5 className="card-title">{note.title}</h5>
                 <i className="fa-regular fa-pen-to-square mx-2" style={{cursor: 'pointer'}} onClick={()=>{updateNote(note)}}></i>
