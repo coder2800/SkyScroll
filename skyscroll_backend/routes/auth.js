@@ -21,10 +21,10 @@ router.post(
   ],
   async (req, res) => {
     //checking for basic requirements of name, email, password
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
       success = false;
-      return res.status(400).json({ success, errors: errors.array() });
+      return res.status(400).json({ success, error}); 
     }
     try {
       //checking if the email already exists
@@ -33,7 +33,7 @@ router.post(
         success = false;
         return res
           .status(400)
-          .json({ success, error: "sorry this email already exists." });
+          .json({ success, error: "Sorry this email already exists." });
       }
       //encrypting the password before storing using salt and hashing
       const salt = await bcrypt.genSalt(10);
@@ -52,7 +52,7 @@ router.post(
       };
       const authToken = jwt.sign(data, JWT_SECRET);
       success = true;
-      res.json({ success, authToken });
+      res.status(200).json({ success, authToken });
     } catch (error) {
       //checking for an error in the try catch block
       success = false;

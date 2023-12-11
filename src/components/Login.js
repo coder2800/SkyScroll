@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import userContext from "../context/user/userContext";
 import {useNavigate} from 'react-router-dom'
-const Login = () => {
+const Login = (props) => {
   const context = useContext(userContext);
   const {login} = context;
   const [user, setUser] = useState({email: "", password: ""})
@@ -16,16 +16,17 @@ const Login = () => {
       console.log(json)
       localStorage.setItem("token", json.authToken);
       navigate('/')
+      props.showAlert("success", "You have logged in successfully.")
     }
     else{
-      alert("Invalid credentials");
+      props.showAlert("danger","Invalid credentials");
     }
   }
   const handleChange = (e)=>{
     setUser({...user, [e.target.name]: e.target.value})
   }
   return (
-    <div className="my-3">
+    <div style={{marginTop: "50px"}}>
       <form onSubmit={handleSubmit} style={{"display": "flex", "flexDirection":"column"}}>
         <div className="mb-3 my-3">
           <label htmlFor="exampleInputEmail1" className="form-label">

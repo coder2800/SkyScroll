@@ -34,7 +34,7 @@ const UserState = (props)=>{
             res = response;
         })
         .catch(error => {
-            res = error;
+            res = error.response;
         });
         return res;
     }

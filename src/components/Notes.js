@@ -4,7 +4,7 @@ import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
 
-export default function Notes() {
+export default function Notes(props) {
   const context = useContext(noteContext);
   const { notes, getNote, editNote } = context;
   const [note, setNote] = useState({ id: "", etitle: "", edescription:"", etag:"" });
@@ -18,17 +18,18 @@ export default function Notes() {
     ref.current.click();
     setNote({id:currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag})
   };
-    const handleClick = (e)=>{
-      editNote(note.id, note.etitle, note.edescription, note.etag)
-      setNote({etitle: "", edescription: "", etag: ""});
-      refClose.current.click();
-    }
+  const handleClick = (e)=>{
+    editNote(note.id, note.etitle, note.edescription, note.etag)
+    setNote({etitle: "", edescription: "", etag: ""});
+    refClose.current.click();
+    props.showAlert("success", "Note updated successfully.")
+  }
     const handleChange = (e)=>{
         setNote({...note, [e.target.name]: e.target.value})
     }
   return (
-    <>
-      <AddNote />
+    <div style={{marginTop : "60px"}}>
+      <AddNote showAlert = {props.showAlert}/>
       <div className="row text-center">
         <button
           ref={ref}
@@ -128,10 +129,10 @@ export default function Notes() {
         </div>
         {notes.map((note) => {
           return (
-            <Noteitem key={note._id} updateNote={updateNote} note={note} />
+            <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert = {props.showAlert}/>
           );
         })}
       </div>
-    </>
+    </div>
   );
 }

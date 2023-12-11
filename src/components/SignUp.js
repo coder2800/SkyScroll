@@ -14,25 +14,26 @@ const SignUp = (props) => {
   const handleSubmit = async (e)=>{
     e.preventDefault();
     if(user.password!==user.cpassword){
-      alert("Password does not match in the two fields");
+      props.showAlert("danger","Password does not match in the two fields");
       setUser({name: "", email: "", password: "", cpassword: ""});
       return;
     }
     const response = await signup(user.name, user.email, user.password);
-    setUser({name: "", email: "", password: "", cpassword: ""});
-    if(response && response.success===true){
+    console.log(response)
+    if(response && response.data.success===true){
+      setUser({name: "", email: "", password: "", cpassword: ""});
       const json = response.data;
       console.log(json)
       localStorage.setItem("token", json.authToken);
       navigate('/')
-      props.showAlert(`Success`, "success");
+      props.showAlert("success", "Signed up successfully.");
     }
     else{
-      props.showAlert(`Error, ${response.response.data.errors[0].msg}`, "danger");
+      props.showAlert("danger",`Error, ${(typeof response.data.error)==="string" ? response.data.error: response.data.error.errors[0].msg}`);
     }
   }
   return (
-    <div className='my-3'>
+    <div style={{marginTop: "50px"}}>
       <form onSubmit={handleSubmit} style={{"display": "flex", "flexDirection": "column"}}>
         <div className="form-group my-3">
           <label htmlFor="name">Name</label>
